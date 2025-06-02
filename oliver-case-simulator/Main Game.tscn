@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bkrsmjaevyktx" path="res://Assets/Logo's/global coin.png" id="8_q080a"]
 [ext_resource type="Texture2D" uid="uid://b4136g53b63da" path="res://Assets/Logo's/X.png" id="9_0nebs"]
 
-[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas", "prestigepurchasebutton", "prestigepurchaselabel")]
+[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas", "prestigepurchasebutton", "prestigepurchaselabel", "rebirthpurchaselabel")]
 script = ExtResource("1_bjc83")
 cases = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Cases")
 shop = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Shop")
@@ -28,6 +28,7 @@ rebirthcanvas = NodePath("Menu Container/Rebirth")
 tutorialcanvas = NodePath("Menu Container/Tutorial")
 prestigepurchasebutton = NodePath("Menu Container/Prestige/ColorRect/PrestigePurchaseButton")
 prestigepurchaselabel = NodePath("Menu Container/Prestige/ColorRect/PrestigePurchaseLabel")
+rebirthpurchaselabel = NodePath("Menu Container/Rebirth/ColorRect/RebirthPurchaseLabel")
 metadata/_edit_horizontal_guides_ = [-47.0]
 
 [node name="Menu Container" type="Control" parent="."]
@@ -262,6 +263,23 @@ offset_bottom = 43.0
 theme = ExtResource("2_a2mja")
 icon = ExtResource("9_0nebs")
 
+[node name="RebirthPurchaseLabel" type="Label" parent="Menu Container/Rebirth/ColorRect"]
+offset_left = 312.0
+offset_top = 239.0
+offset_right = 982.0
+offset_bottom = 445.0
+text = "Click the button to prestige the max possible amount that you can!
+This will reset all of your non Perm Oliver's, Boofs And Your Coins!
+Amount Of Prestiges:
+You Will Recieve:"
+
+[node name="RebirthPurchaseButton" type="Button" parent="Menu Container/Rebirth/ColorRect"]
+offset_left = 314.0
+offset_top = 444.0
+offset_right = 692.0
+offset_bottom = 527.0
+text = "Prestige"
+
 [node name="Tutorial" type="CanvasLayer" parent="Menu Container"]
 visible = false
 
@@ -332,4 +350,5 @@ autostart = true
 [connection signal="pressed" from="Menu Container/Prestige/ColorRect/PrestigeExit" to="." method="_on_prestige_exit_pressed"]
 [connection signal="pressed" from="Menu Container/Prestige/ColorRect/PrestigePurchaseButton" to="." method="_on_prestige_purchase_button_pressed"]
 [connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthExit" to="." method="_on_rebirth_exit_pressed"]
+[connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthPurchaseButton" to="." method="_on_rebirth_purchase_button_pressed"]
 [connection signal="pressed" from="Menu Container/Tutorial/TutorialExit" to="." method="_on_tutorial_exit_pressed"]

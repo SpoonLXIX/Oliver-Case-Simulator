@@ -5,7 +5,11 @@ extends Node2D
 @onready var amountOfRebirths = 3
 @onready var amountOfPrestigePoints = amountOfPrestiges*5
 @onready var maxPrestigeCost = 0
+@onready var maxRebirthCost = 0
+@onready var costForOnePrestige = 0
+@onready var costForOneRebirth = 0
 @onready var pptext = ""
+@onready var rptext = ""
 
 
 ##Define Buttons:
@@ -36,6 +40,10 @@ extends Node2D
 @export var prestigepurchasebutton: Button
 @export var prestigepurchaselabel: Label
 
+##Rebirth Purchase Button + Label:
+@export var rebirthpurchasebutton: Button
+@export var rebirthpurchaselabel: Label
+
 ##Blank So Far!
 func _process(_delta):
 	pass
@@ -63,21 +71,28 @@ func secondPassed():
 	var r = 1.07
 	var k = Globals.currentPrestiges
 	var c = Globals.oliverBucks
-	var costforoneprestige = b*((r**k)*((r**n)- 1)/(r-1))
+	costForOnePrestige = b*((r**k)*((r**n)- 1)/(r-1))
 	var a = (((c*(r-1))/(b*(r**k))) + 1)
 	var maxamountofupgrades = floor((log(a))/(log(r)))
-	print(costforoneprestige)
-	print(maxamountofupgrades)
 	var maxupgradecost = b * (r**k) * ((r**maxamountofupgrades) -1) / (r-1)
-	print(maxupgradecost)
 	amountOfPrestiges = maxamountofupgrades
 	amountOfPrestigePoints = amountOfPrestiges*5
 	maxPrestigeCost = maxupgradecost
-	###
-	##Calculate the amount of possible rebirths following future formula:
-	amountOfRebirths = 5
-	#######
 	update_prestige_price()
+	##Calculate the amount of possible rebirths following future formula:
+	n = 1
+	b = 1000000
+	r = 1.2
+	k = Globals.currentRebirths
+	c = Globals.prestigePoints
+	costForOneRebirth = b*((r**k)*((r**n)- 1)/(r-1))
+	a = (((c*(r-1))/(b*(r**k))) + 1)
+	maxamountofupgrades = floor((log(a))/(log(r)))
+	amountOfRebirths = maxamountofupgrades
+	maxupgradecost = b * (r**k) * ((r**maxamountofupgrades) -1) / (r-1)
+	var maxRebirthCost = maxupgradecost
+	#######
+	update_rebirth_price()
 func _on_timer_timeout():
 	secondPassed()
 
@@ -132,23 +147,36 @@ func update_prestige_price():
 	prestigepurchaselabel.text = pptext
 
 func update_rebirth_price():
-	pptext = "Click the button to rebirth the max possible amount that you can!
+	rptext = "Click the button to rebirth the max possible amount that you can!
 	This will reset all of your non Perm Oliver's, Boofs, Prestiges And Your Coins!
 	Amount Of Rebirths: "
-	pptext = pptext + str(amountOfPrestiges)
-	var pptext2 = "
+	rptext = rptext + str(amountOfRebirths)
+	if amountOfRebirths == 0:
+		maxRebirthCost = costForOneRebirth
+	var rptextcost = "
+	Rebirthing Costs: " + str(maxRebirthCost)
+	rptextcost = rptextcost + " Prestige Points"
+	rptext = rptext + rptextcost
+	var rptext2 = "
 	You Will Recieve: "
-	pptext2 = pptext2 + str(amountOfPrestigePoints)
-	pptext = pptext + pptext2 + "Prestige Points"
-	prestigepurchaselabel.text = pptext
+	rptext2 = rptext2 + str(amountOfRebirths)
+	rptext = rptext + rptext2 + "Prestige Points"
+	rebirthpurchaselabel.text = rptext
 
 
 ##Purchase Prestige+ Rebirth Here
 func _on_prestige_purchase_button_pressed() -> void:
-	reset_values(0)
-	Globals.oliverBucks = 0
-	Globals.prestigePoints = Globals.prestigePoints + amountOfPrestigePoints
+	if amountOfPrestiges > 0:
+		reset_values(0)
+		Globals.oliverBucks = 0
+		Globals.prestigePoints = Globals.prestigePoints + amountOfPrestigePoints
+		##Play Prestige Sound
 
+func _on_rebirth_purchase_button_pressed() -> void:
+	if amountOfRebirths > 0:
+		reset_values(1)
+		Globals.rebirthPoints = Globals.rebirthPoints + amountOfRebirths
+		##Play Rebirth Sound
 
 
 func reset_values(level):
