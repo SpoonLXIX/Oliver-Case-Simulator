@@ -90,7 +90,7 @@ func secondPassed():
 	maxamountofupgrades = floor((log(a))/(log(r)))
 	amountOfRebirths = maxamountofupgrades
 	maxupgradecost = b * (r**k) * ((r**maxamountofupgrades) -1) / (r-1)
-	var maxRebirthCost = maxupgradecost
+	maxRebirthCost = maxupgradecost
 	#######
 	update_rebirth_price()
 func _on_timer_timeout():
@@ -124,9 +124,9 @@ func update_currencies():
 	buckstext = buckstext + "  (" + str(Globals.bucksPerSecond) + "/s)"
 	bucks.text = buckstext
 	
-	var pptext = "Prestige Points: "
+	pptext = "Prestige Points: "
 	pp.text = pptext + str(Globals.prestigePoints)	
-	var rptext = "Rebirth Points: "
+	rptext = "Rebirth Points: "
 	rp.text = rptext + str(Globals.rebirthPoints)
 	
 	
@@ -134,6 +134,8 @@ func update_prestige_price():
 	pptext = "Click the button to prestige the max possible amount that you can!
 	This will reset all of your non Perm Oliver's, Boofs And Your Coins!
 	Amount Of Prestiges: "
+	if amountOfPrestiges == 0:
+		maxPrestigeCost = costForOnePrestige
 	pptext = pptext + str(amountOfPrestiges)
 	var pptextcost = "
 	Prestiging Costs: " + str(maxPrestigeCost)
