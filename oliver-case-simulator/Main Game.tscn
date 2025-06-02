@@ -1,51 +1,67 @@
-[gd_scene format=3 uid="uid://dw3lj3gqo0i6t"]
+[gd_scene load_steps=5 format=3 uid="uid://dw3lj3gqo0i6t"]
+
+[ext_resource type="Script" uid="uid://cin4gplvye4fm" path="res://main_game.gd" id="1_bjc83"]
+[ext_resource type="Texture2D" uid="uid://c8is2f0lp8rys" path="res://Assets/Logo's/crate placeholder.png" id="1_vy74w"]
+[ext_resource type="Theme" uid="uid://4q0dv6gma81c" path="res://Assets/IconButtonResource.tres" id="2_a2mja"]
+[ext_resource type="Texture2D" uid="uid://cx1geccyi02y6" path="res://Assets/Logo's/oliver64x64.png" id="4_56cdm"]
 
 [node name="Factory" type="Node2D"]
+script = ExtResource("1_bjc83")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Menu Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Menu Container"]
+
+[node name="ColorRect" type="ColorRect" parent="Menu Container/CanvasLayer"]
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 571.0
-offset_right = 576.0
-offset_bottom = 629.0
+offset_right = 422.0
+offset_bottom = 635.0
 
-[node name="Cases" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Cases" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
-text = "Cases"
+theme = ExtResource("2_a2mja")
+action_mode = 0
+icon = ExtResource("1_vy74w")
 
-[node name="Shop" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Shop" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
-text = "Shop"
+theme = ExtResource("2_a2mja")
+text = "64x64"
 
-[node name="Oliver\'s" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Olivers" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
-text = "Oliver's"
+theme = ExtResource("2_a2mja")
+icon = ExtResource("4_56cdm")
 
-[node name="Prestige" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Prestige" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
 text = "Prestige"
 
-[node name="Rebirth" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Rebirth" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
 text = "Rebirth"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
 layout_mode = 0
 offset_left = 1007.0
 offset_top = 9.0
 offset_right = 1132.0
 offset_bottom = 127.0
 
-[node name="Settings" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+[node name="Settings" type="Button" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="Leaderboard" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+[node name="Leaderboard" type="Button" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Leaderboard"

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://4q0dv6gma81c"]
+
+[ext_resource type="StyleBox" uid="uid://cij2o71x6ld3x" path="res://Assets/ButtonHover.tres" id="1_wwc5k"]
+[ext_resource type="StyleBox" uid="uid://cmsxkuorgdxi8" path="res://Assets/ButtonIdle.tres" id="2_1nj3o"]
+[ext_resource type="StyleBox" uid="uid://buektc7r8heh5" path="res://Assets/Buttonpressed.tres" id="3_i5ren"]
+
+[resource]
+Button/colors/font_outline_color = Color(0, 0, 0, 0)
+Button/styles/hover = ExtResource("1_wwc5k")
+Button/styles/normal = ExtResource("2_1nj3o")
+Button/styles/pressed = ExtResource("3_i5ren")
