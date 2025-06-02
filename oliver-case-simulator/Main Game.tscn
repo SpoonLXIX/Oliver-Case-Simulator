@@ -19,6 +19,7 @@ offset_bottom = 40.0
 [node name="ColorRect" type="ColorRect" parent="Menu Container/CanvasLayer"]
 offset_right = 1152.0
 offset_bottom = 648.0
+color = Color(0.577008, 0.577008, 0.577008, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
 layout_mode = 0
@@ -36,7 +37,9 @@ icon = ExtResource("1_vy74w")
 [node name="Shop" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_a2mja")
-text = "64x64"
+text = "Shop
+icon = 64x64
+got to add iconbuttonresource on all other buttons."
 
 [node name="Olivers" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
 layout_mode = 2
@@ -65,3 +68,40 @@ text = "Settings"
 [node name="Leaderboard" type="Button" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Leaderboard"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OliverBucks" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+text = "Oliver Bucks: 0"
+
+[node name="Luck" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+text = "Boofs (Luck) : 0"
+
+[node name="PrestigePoints" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+text = "Prestige Points: 0"
+
+[node name="RebirthPoints" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+text = "Rebirth Points: 0"
+
+[node name="Label" type="Label" parent="Menu Container/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.325441, 0.325441, 0.325441, 1)
+text = "Version 0.1"
+
+[node name="Second" type="Timer" parent="."]
+autostart = true

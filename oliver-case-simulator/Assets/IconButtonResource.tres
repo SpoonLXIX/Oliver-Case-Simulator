@@ -6,6 +6,9 @@
 
 [resource]
 Button/colors/font_outline_color = Color(0, 0, 0, 0)
+Button/colors/icon_hover_color = Color(0.581033, 0.581033, 0.581033, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(0.314316, 0.314316, 0.314316, 1)
 Button/styles/hover = ExtResource("1_wwc5k")
 Button/styles/normal = ExtResource("2_1nj3o")
 Button/styles/pressed = ExtResource("3_i5ren")
