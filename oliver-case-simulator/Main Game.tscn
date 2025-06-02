@@ -224,6 +224,7 @@ offset_bottom = 527.0
 text = "Prestige"
 
 [node name="Rebirth" type="CanvasLayer" parent="Menu Container"]
+visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Rebirth"]
 anchors_preset = 8
