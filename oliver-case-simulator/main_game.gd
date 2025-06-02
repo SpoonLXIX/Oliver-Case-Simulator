@@ -1,4 +1,11 @@
 extends Node2D
+
+##Define Public Variables:
+@onready var amountOfPrestiges = 3
+@onready var amountOfRebirths = 3
+@onready var amountOfPrestigePoints = amountOfPrestiges*5
+@onready var pptext = ""
+
 ##Define Buttons:
 @export var cases: Button
 @export var shop: Button
@@ -23,6 +30,10 @@ extends Node2D
 @export var tutorialcanvas: CanvasLayer
 
 
+##Prestige Purchase Button + Label:
+@export var prestigepurchasebutton: Button
+@export var prestigepurchaselabel: Label
+
 ##Blank So Far!
 func _process(_delta):
 	pass
@@ -36,13 +47,19 @@ func _ready():
 	###If First Time Playing:
 	if Globals.firstTimePlaying == false:
 		tutorialcanvas.hide()
+
 func secondPassed():
+	Globals.oliverBucks = Globals.oliverBucks + Globals.bucksPerSecond*Globals.startMultiplier + Globals.extraBucksPerSecond
 	print("second")
-	Globals.oliverBucks = Globals.oliverBucks + Globals.bucksPerSecond
-	var buckstext = "Oliver Bucks: "
-	buckstext = buckstext + str(Globals.oliverBucks)
-	buckstext = buckstext + "  (" + str(Globals.bucksPerSecond) + "/s)"
-	bucks.text = buckstext
+	update_oliver_bucks()
+	##Calculate the amount of possible prestiges following future formula:
+	amountOfPrestiges = 3
+	amountOfPrestigePoints = amountOfPrestiges*5
+	###
+	##Calculate the amount of possible rebirths following future formula:
+	amountOfRebirths = 5
+	#######
+	update_prestige_price()
 func _on_timer_timeout():
 	secondPassed()
 
@@ -67,4 +84,52 @@ func _on_rebirth_exit_pressed() -> void:
 func _on_tutorial_exit_pressed() -> void:
 	Globals.firstTimePlaying = false
 	tutorialcanvas.hide()
+	
+func update_oliver_bucks():
+	var buckstext = "Oliver Bucks: "
+	buckstext = buckstext + str(Globals.oliverBucks)
+	buckstext = buckstext + "  (" + str(Globals.bucksPerSecond) + "/s)"
+	bucks.text = buckstext
+	
+	
+func update_prestige_price():
+	pptext = "Click the button to prestige the max possible amount that you can!
+	This will reset all of your non Perm Oliver's, Boofs And Your Coins!
+	Amount Of Prestiges: "
+	pptext = pptext + str(amountOfPrestiges)
+	var pptext2 = "
+	You Will Recieve: "
+	pptext2 = pptext2 + str(amountOfPrestigePoints)
+	pptext = pptext + pptext2 + " Prestige Points"
+	prestigepurchaselabel.text = pptext
+
+func update_rebirth_price():
+	pptext = "Click the button to rebirth the max possible amount that you can!
+	This will reset all of your non Perm Oliver's, Boofs, Prestiges And Your Coins!
+	Amount Of Rebirths: "
+	pptext = pptext + str(amountOfPrestiges)
+	var pptext2 = "
+	You Will Recieve: "
+	pptext2 = pptext2 + str(amountOfPrestigePoints)
+	pptext = pptext + pptext2 + "Prestige Points"
+	prestigepurchaselabel.text = pptext
+
+
+##Purchase Prestige+ Rebirth Here
+func _on_prestige_purchase_button_pressed() -> void:
+	reset_values(0)
+	Globals.oliverBucks = 0
+
+
+
+func reset_values(level):
+	Globals.oliverBucks = 0
+	Globals.extraBucksPerSecond = 0
+	##Non Perm Boofs Reset Here
+	if level == 1:
+		Globals.prestigePoints = 0
+		##Reset Prestige Extra Stuff Here!
+	update_rebirth_price()
+	update_prestige_price()
+	update_oliver_bucks()
 	
