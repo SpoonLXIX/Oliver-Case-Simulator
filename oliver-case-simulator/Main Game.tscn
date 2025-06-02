@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dw3lj3gqo0i6t"]
+
+[node name="Factory" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 571.0
+offset_right = 576.0
+offset_bottom = 629.0
+
+[node name="Cases" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+layout_mode = 2
+text = "Cases"
+
+[node name="Shop" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+layout_mode = 2
+text = "Shop"
+
+[node name="Oliver\'s" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+layout_mode = 2
+text = "Oliver's"
+
+[node name="Prestige" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+layout_mode = 2
+text = "Prestige"
+
+[node name="Rebirth" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer"]
+layout_mode = 2
+text = "Rebirth"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 1007.0
+offset_top = 9.0
+offset_right = 1132.0
+offset_bottom = 127.0
+
+[node name="Settings" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Leaderboard" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Leaderboard"
