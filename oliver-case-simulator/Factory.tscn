@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw3lj3gqo0i6t"]
+
+[ext_resource type="Texture2D" uid="uid://bhhdxkv2ewgro" path="res://icon.svg" id="1_nasbq"]
+[ext_resource type="PackedScene" uid="uid://doxa8vyo0dncn" path="res://Character.tscn" id="2_sda6m"]
+
+[node name="Factory" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64, 64)
+texture = ExtResource("1_nasbq")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_sda6m")]
+position = Vector2(159, 96)
