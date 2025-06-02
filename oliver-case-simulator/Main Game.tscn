@@ -224,7 +224,6 @@ offset_bottom = 527.0
 text = "Prestige"
 
 [node name="Rebirth" type="CanvasLayer" parent="Menu Container"]
-visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Rebirth"]
 anchors_preset = 8
@@ -278,7 +277,7 @@ offset_left = 314.0
 offset_top = 444.0
 offset_right = 692.0
 offset_bottom = 527.0
-text = "Prestige"
+text = "Rebirth"
 
 [node name="Tutorial" type="CanvasLayer" parent="Menu Container"]
 visible = false
