@@ -164,6 +164,7 @@ theme_override_colors/font_color = Color(0.325441, 0.325441, 0.325441, 1)
 text = "Version 0.1"
 
 [node name="Prestige" type="CanvasLayer" parent="Menu Container"]
+visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Prestige"]
 anchors_preset = 8

@@ -1,10 +1,12 @@
 extends Node2D
 
 ##Define Public Variables:
-@onready var amountOfPrestiges = 3
+@onready var amountOfPrestiges = 0
 @onready var amountOfRebirths = 3
 @onready var amountOfPrestigePoints = amountOfPrestiges*5
+@onready var maxPrestigeCost = 0
 @onready var pptext = ""
+
 
 ##Define Buttons:
 @export var cases: Button
@@ -51,10 +53,26 @@ func _ready():
 func secondPassed():
 	Globals.oliverBucks = Globals.oliverBucks + Globals.bucksPerSecond*Globals.startMultiplier + Globals.extraBucksPerSecond
 	print("second")
-	update_oliver_bucks()
+	update_currencies()
 	##Calculate the amount of possible prestiges following future formula:
-	amountOfPrestiges = 3
+	##For access to the blog used:
+	##https://blog.kongregate.com/the-math-of-idle-games-part-i/
+	#Prestige Calculations:
+	var n = 1
+	var b = 100000
+	var r = 1.07
+	var k = Globals.currentPrestiges
+	var c = Globals.oliverBucks
+	var costforoneprestige = b*((r**k)*((r**n)- 1)/(r-1))
+	var a = (((c*(r-1))/(b*(r**k))) + 1)
+	var maxamountofupgrades = floor((log(a))/(log(r)))
+	print(costforoneprestige)
+	print(maxamountofupgrades)
+	var maxupgradecost = b * (r**k) * ((r**maxamountofupgrades) -1) / (r-1)
+	print(maxupgradecost)
+	amountOfPrestiges = maxamountofupgrades
 	amountOfPrestigePoints = amountOfPrestiges*5
+	maxPrestigeCost = maxupgradecost
 	###
 	##Calculate the amount of possible rebirths following future formula:
 	amountOfRebirths = 5
@@ -85,11 +103,16 @@ func _on_tutorial_exit_pressed() -> void:
 	Globals.firstTimePlaying = false
 	tutorialcanvas.hide()
 	
-func update_oliver_bucks():
+func update_currencies():
 	var buckstext = "Oliver Bucks: "
 	buckstext = buckstext + str(Globals.oliverBucks)
 	buckstext = buckstext + "  (" + str(Globals.bucksPerSecond) + "/s)"
 	bucks.text = buckstext
+	
+	var pptext = "Prestige Points: "
+	pp.text = pptext + str(Globals.prestigePoints)	
+	var rptext = "Rebirth Points: "
+	rp.text = rptext + str(Globals.rebirthPoints)
 	
 	
 func update_prestige_price():
@@ -97,6 +120,11 @@ func update_prestige_price():
 	This will reset all of your non Perm Oliver's, Boofs And Your Coins!
 	Amount Of Prestiges: "
 	pptext = pptext + str(amountOfPrestiges)
+	var pptextcost = "
+	Prestiging Costs: " + str(maxPrestigeCost)
+	pptextcost = pptextcost + " Oliver Bucks"
+	pptext = pptext + pptextcost
+	
 	var pptext2 = "
 	You Will Recieve: "
 	pptext2 = pptext2 + str(amountOfPrestigePoints)
@@ -119,6 +147,7 @@ func update_rebirth_price():
 func _on_prestige_purchase_button_pressed() -> void:
 	reset_values(0)
 	Globals.oliverBucks = 0
+	Globals.prestigePoints = Globals.prestigePoints + amountOfPrestigePoints
 
 
 
@@ -131,5 +160,5 @@ func reset_values(level):
 		##Reset Prestige Extra Stuff Here!
 	update_rebirth_price()
 	update_prestige_price()
-	update_oliver_bucks()
+	update_currencies()
 	
