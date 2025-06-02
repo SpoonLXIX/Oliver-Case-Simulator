@@ -1,12 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw3lj3gqo0i6t"]
+[gd_scene load_steps=10 format=3 uid="uid://dw3lj3gqo0i6t"]
 
 [ext_resource type="Script" uid="uid://cin4gplvye4fm" path="res://main_game.gd" id="1_bjc83"]
 [ext_resource type="Texture2D" uid="uid://c8is2f0lp8rys" path="res://Assets/Logo's/crate placeholder.png" id="1_vy74w"]
 [ext_resource type="Theme" uid="uid://4q0dv6gma81c" path="res://Assets/IconButtonResource.tres" id="2_a2mja"]
 [ext_resource type="Texture2D" uid="uid://cx1geccyi02y6" path="res://Assets/Logo's/oliver64x64.png" id="4_56cdm"]
+[ext_resource type="Texture2D" uid="uid://cgrax4tca24ok" path="res://Assets/Logo's/OliverCoin.png" id="5_3omiw"]
+[ext_resource type="Texture2D" uid="uid://c33hawht0mpw2" path="res://Assets/Logo's/PP.png" id="6_q080a"]
+[ext_resource type="Texture2D" uid="uid://ccoxdiutid7oj" path="res://Assets/Logo's/RP.png" id="7_0nebs"]
+[ext_resource type="Texture2D" uid="uid://bkrsmjaevyktx" path="res://Assets/Logo's/global coin.png" id="8_q080a"]
+[ext_resource type="Texture2D" uid="uid://b4136g53b63da" path="res://Assets/Logo's/X.png" id="9_0nebs"]
 
-[node name="Factory" type="Node2D"]
+[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas")]
 script = ExtResource("1_bjc83")
+cases = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Cases")
+shop = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Shop")
+olivers = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Olivers")
+prestige = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Prestige")
+rebirth = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Rebirth")
+settings = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer/Settings")
+leaderboard = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer/Leaderboard")
+bucks = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer/OliverBucks")
+luck = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer4/Luck")
+pp = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer2/PrestigePoints")
+rp = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer3/RebirthPoints")
+prestigecanvas = NodePath("Menu Container/Prestige")
+rebirthcanvas = NodePath("Menu Container/Rebirth")
+tutorialcanvas = NodePath("Menu Container/Tutorial")
+metadata/_edit_horizontal_guides_ = [-47.0]
 
 [node name="Menu Container" type="Control" parent="."]
 layout_mode = 3
@@ -14,83 +34,121 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Menu Container"]
+[node name="Main Layer" type="CanvasLayer" parent="Menu Container"]
 
-[node name="ColorRect" type="ColorRect" parent="Menu Container/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Menu Container/Main Layer"]
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.577008, 0.577008, 0.577008, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu Container/Main Layer/ColorRect"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 571.0
-offset_right = 422.0
-offset_bottom = 635.0
+offset_left = 27.0
+offset_top = 541.0
+offset_right = 706.0
+offset_bottom = 610.0
 
-[node name="Cases" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Cases" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_a2mja")
 action_mode = 0
 icon = ExtResource("1_vy74w")
 
-[node name="Shop" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Shop" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_a2mja")
 text = "Shop
 icon = 64x64
 got to add iconbuttonresource on all other buttons."
 
-[node name="Olivers" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Olivers" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_a2mja")
 icon = ExtResource("4_56cdm")
 
-[node name="Prestige" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Prestige" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
 text = "Prestige"
 
-[node name="Rebirth" type="Button" parent="Menu Container/CanvasLayer/ColorRect/HBoxContainer"]
+[node name="Rebirth" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
 text = "Rebirth"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu Container/Main Layer/ColorRect"]
 layout_mode = 0
-offset_left = 1007.0
-offset_top = 9.0
-offset_right = 1132.0
-offset_bottom = 127.0
+offset_left = 998.0
+offset_top = 59.0
+offset_right = 1123.0
+offset_bottom = 177.0
 
-[node name="Settings" type="Button" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer"]
+[node name="Settings" type="Button" parent="Menu Container/Main Layer/ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="Leaderboard" type="Button" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer"]
+[node name="Leaderboard" type="Button" parent="Menu Container/Main Layer/ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Leaderboard"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Menu Container/CanvasLayer/ColorRect"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="?" type="Button" parent="Menu Container/Main Layer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "?"
 
-[node name="OliverBucks" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu Container/Main Layer/ColorRect"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 45.0
+offset_right = 247.0
+offset_bottom = 313.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_3omiw")
+stretch_mode = 2
+
+[node name="OliverBucks" type="Label" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 text = "Oliver Bucks: 0"
 
-[node name="Luck" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2"]
 layout_mode = 2
-text = "Boofs (Luck) : 0"
 
-[node name="PrestigePoints" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("6_q080a")
+stretch_mode = 2
+
+[node name="PrestigePoints" type="Label" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
 text = "Prestige Points: 0"
 
-[node name="RebirthPoints" type="Label" parent="Menu Container/CanvasLayer/ColorRect/VBoxContainer2"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("7_0nebs")
+stretch_mode = 2
+
+[node name="RebirthPoints" type="Label" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer3"]
 layout_mode = 2
 text = "Rebirth Points: 0"
 
-[node name="Label" type="Label" parent="Menu Container/CanvasLayer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("8_q080a")
+stretch_mode = 2
+
+[node name="Luck" type="Label" parent="Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer4"]
+layout_mode = 2
+text = "Boofs (Luck) : 0"
+
+[node name="Label" type="Label" parent="Menu Container/Main Layer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -103,5 +161,153 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.325441, 0.325441, 0.325441, 1)
 text = "Version 0.1"
 
+[node name="Prestige" type="CanvasLayer" parent="Menu Container"]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="Menu Container/Prestige"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -299.5
+offset_right = 563.0
+offset_bottom = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419813, 0.419813, 0.419813, 0.65098)
+
+[node name="ColorRect" type="ColorRect" parent="Menu Container/Prestige"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -289.0
+offset_right = 550.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.576471, 0.576471, 0.576471, 0.65098)
+
+[node name="PrestigeExit" type="Button" parent="Menu Container/Prestige/ColorRect"]
+layout_mode = 0
+offset_left = 1054.0
+offset_top = -21.0
+offset_right = 1118.0
+offset_bottom = 43.0
+theme = ExtResource("2_a2mja")
+icon = ExtResource("9_0nebs")
+
+[node name="Rebirth" type="CanvasLayer" parent="Menu Container"]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="Menu Container/Rebirth"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -299.5
+offset_right = 563.0
+offset_bottom = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419813, 0.419813, 0.419813, 0.65098)
+
+[node name="ColorRect" type="ColorRect" parent="Menu Container/Rebirth"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -289.0
+offset_right = 550.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.576471, 0.576471, 0.576471, 0.65098)
+
+[node name="RebirthExit" type="Button" parent="Menu Container/Rebirth/ColorRect"]
+layout_mode = 0
+offset_left = 1054.0
+offset_top = -21.0
+offset_right = 1118.0
+offset_bottom = 43.0
+theme = ExtResource("2_a2mja")
+icon = ExtResource("9_0nebs")
+
+[node name="Tutorial" type="CanvasLayer" parent="Menu Container"]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="Menu Container/Tutorial"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -299.5
+offset_right = 563.0
+offset_bottom = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419813, 0.419813, 0.419813, 0.65098)
+
+[node name="Label" type="Label" parent="Menu Container/Tutorial"]
+offset_left = 408.0
+offset_top = 36.0
+offset_right = 686.0
+offset_bottom = 85.0
+text = "Welcome To Oliver Case Simulator!!!
+           This is the tutorial..."
+
+[node name="Label2" type="Label" parent="Menu Container/Tutorial"]
+offset_left = 262.0
+offset_top = 136.0
+offset_right = 628.0
+offset_bottom = 244.0
+text = "Coins - Used to purchase Oliver's
+Prestige Points - Used for Semi-Perm Boosts
+Rebirth Points - Used for Perm Oliver's + Boosts
+Luck - Increases Luck When Opening Crates"
+
+[node name="Label2" type="Label" parent="Menu Container/Tutorial/Label2"]
+offset_left = -225.0
+offset_top = 381.0
+offset_right = 460.0
+offset_bottom = 489.0
+text = "Cases     Shop      Oliver's      Prestige      Rebirth"
+
+[node name="Label3" type="Label" parent="Menu Container/Tutorial"]
+offset_left = 883.0
+offset_top = 69.0
+offset_right = 1107.0
+offset_bottom = 170.0
+text = "Settings
+Leaderboard
+Click The ? 
+
+To Reopen This At Any Time"
+
+[node name="TutorialExit" type="Button" parent="Menu Container/Tutorial"]
+offset_left = 1054.0
+offset_top = -21.0
+offset_right = 1118.0
+offset_bottom = 43.0
+theme = ExtResource("2_a2mja")
+icon = ExtResource("9_0nebs")
+
 [node name="Second" type="Timer" parent="."]
 autostart = true
+
+[connection signal="button_down" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Prestige" to="." method="_on_prestige_button_down"]
+[connection signal="button_down" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Rebirth" to="." method="_on_rebirth_button_down"]
+[connection signal="button_down" from="Menu Container/Main Layer/ColorRect/VBoxContainer/?" to="." method="_on__button_down"]
+[connection signal="pressed" from="Menu Container/Prestige/ColorRect/PrestigeExit" to="." method="_on_prestige_exit_pressed"]
+[connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthExit" to="." method="_on_rebirth_exit_pressed"]
+[connection signal="pressed" from="Menu Container/Tutorial/TutorialExit" to="." method="_on_tutorial_exit_pressed"]

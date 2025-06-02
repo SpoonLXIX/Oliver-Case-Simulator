@@ -1,34 +1,70 @@
 extends Node2D
 ##Define Buttons:
-@onready var cases = $"Menu Container/CanvasLayer/ColorRect/HBoxContainer/Cases"
-@onready var shop = $"Menu Container/CanvasLayer/ColorRect/HBoxContainer/Shop"
-@onready var olivers = $"Menu Container/CanvasLayer/ColorRect/HBoxContainer/Olivers"
-@onready var prestige = $"Menu Container/CanvasLayer/ColorRect/HBoxContainer/Prestige"
-@onready var rebirth = $"Menu Container/CanvasLayer/ColorRect/HBoxContainer/Rebirth"
-@onready var settings = $"Menu Container/CanvasLayer/ColorRect/VBoxContainer/Settings"
-@onready var leaderboard = $"Menu Container/CanvasLayer/ColorRect/VBoxContainer/Leaderboard"
+@export var cases: Button
+@export var shop: Button
+@export var olivers: Button
+@export var prestige: Button
+@export var rebirth: Button
+@export var settings: Button
+@export var leaderboard: Button
+
+##Define Timer:
 @onready var second = $Second
-@onready var bucks = $"Menu Container/CanvasLayer/ColorRect/VBoxContainer2/OliverBucks"
-@onready var luck = $"Menu Container/CanvasLayer/ColorRect/VBoxContainer2/Luck"
-@onready var pp = $"Menu Container/CanvasLayer/ColorRect/VBoxContainer2/PrestigePoints"
-@onready var rp = $"Menu Container/CanvasLayer/ColorRect/VBoxContainer2/RebirthPoints"
+
+##Define Currency Labels:
+@export var bucks: Label
+@export var luck: Label
+@export var pp: Label
+@export var rp: Label
+
+##Define Canvas Layers For Buttons:
+@export var prestigecanvas: CanvasLayer
+@export var rebirthcanvas: CanvasLayer
+@export var tutorialcanvas: CanvasLayer
 
 
-func _ready():
-	second.connect("timeout", _on_timer_timeout)
-
+##Blank So Far!
 func _process(_delta):
 	pass
-
+	##nothin yet
+##
+	
+	
+func _ready():
+	##Connect 1 Second Timer To Script
+	second.connect("timeout", _on_timer_timeout)
+	###If First Time Playing:
+	if Globals.firstTimePlaying == false:
+		tutorialcanvas.hide()
 func secondPassed():
 	print("second")
 	Globals.oliverBucks = Globals.oliverBucks + Globals.bucksPerSecond
 	var buckstext = "Oliver Bucks: "
 	buckstext = buckstext + str(Globals.oliverBucks)
-	buckstext = buckstext + "   (" + str(Globals.bucksPerSecond) + "/s)"
+	buckstext = buckstext + "  (" + str(Globals.bucksPerSecond) + "/s)"
 	bucks.text = buckstext
-	
-	
-	
 func _on_timer_timeout():
 	secondPassed()
+
+###All Main Menu Buttons:
+func _on_prestige_button_down() -> void:
+	prestigecanvas.show()
+
+func _on_rebirth_button_down() ->void:
+	rebirthcanvas.show()
+##? Tutorial Button
+func _on__button_down() -> void:
+	tutorialcanvas.show()
+
+
+###All Close Menu Buttons:
+func _on_prestige_exit_pressed() -> void:
+	prestigecanvas.hide()
+func _on_rebirth_exit_pressed() -> void:
+	rebirthcanvas.hide()
+
+
+func _on_tutorial_exit_pressed() -> void:
+	Globals.firstTimePlaying = false
+	tutorialcanvas.hide()
+	
