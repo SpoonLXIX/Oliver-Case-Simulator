@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo3aog4rpypd0"]
+
+[ext_resource type="Script" uid="uid://d2oin8h2b004e" path="res://Assets/Cases/TestCase/test_case_script.gd" id="1_s542s"]
+[ext_resource type="Texture2D" uid="uid://c8is2f0lp8rys" path="res://Assets/Logo's/crate placeholder.png" id="2_6cbmf"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 89.0
+offset_bottom = 99.0
+script = ExtResource("1_s542s")
+value = 10
+loot = [0, 1, 2]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_6cbmf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Open" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Open"
+
+[node name="Sell" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Sell"
+
+[connection signal="pressed" from="HBoxContainer/Open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="HBoxContainer/Sell" to="." method="_on_sell_pressed"]

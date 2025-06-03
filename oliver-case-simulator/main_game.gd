@@ -34,6 +34,8 @@ extends Node2D
 @export var prestigecanvas: CanvasLayer
 @export var rebirthcanvas: CanvasLayer
 @export var tutorialcanvas: CanvasLayer
+@export var casecanvas: CanvasLayer
+@export var olivercanvas: CanvasLayer
 
 
 ##Prestige Purchase Button + Label:
@@ -48,7 +50,7 @@ extends Node2D
 func _process(_delta):
 	pass
 	##nothin yet
-##
+
 	
 	
 func _ready():
@@ -105,8 +107,10 @@ func _on_rebirth_button_down() ->void:
 ##? Tutorial Button
 func _on__button_down() -> void:
 	tutorialcanvas.show()
-
-
+func _on_cases_pressed() -> void:
+	casecanvas.show()
+func _on_olivers_pressed() -> void:
+	olivercanvas.show()
 ###All Close Menu Buttons:
 func _on_prestige_exit_pressed() -> void:
 	prestigecanvas.hide()
@@ -117,7 +121,17 @@ func _on_rebirth_exit_pressed() -> void:
 func _on_tutorial_exit_pressed() -> void:
 	Globals.firstTimePlaying = false
 	tutorialcanvas.hide()
-	
+
+
+
+func _on_cases_exit_pressed() -> void:
+	casecanvas.hide()
+
+
+func _on_oliver_exit_pressed() -> void:
+	olivercanvas.hide()
+
+
 func update_currencies():
 	var buckstext = "Oliver Bucks: "
 	buckstext = buckstext + str(Globals.oliverBucks)
@@ -179,6 +193,7 @@ func _on_rebirth_purchase_button_pressed() -> void:
 		reset_values(1)
 		Globals.rebirthPoints = Globals.rebirthPoints + amountOfRebirths
 		##Play Rebirth Sound
+
 
 
 func reset_values(level):

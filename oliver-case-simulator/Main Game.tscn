@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dw3lj3gqo0i6t"]
+[gd_scene load_steps=11 format=3 uid="uid://dw3lj3gqo0i6t"]
 
 [ext_resource type="Script" uid="uid://cin4gplvye4fm" path="res://main_game.gd" id="1_bjc83"]
 [ext_resource type="Texture2D" uid="uid://c8is2f0lp8rys" path="res://Assets/Logo's/crate placeholder.png" id="1_vy74w"]
-[ext_resource type="Theme" uid="uid://4q0dv6gma81c" path="res://Assets/IconButtonResource.tres" id="2_a2mja"]
+[ext_resource type="Theme" uid="uid://4q0dv6gma81c" path="res://Assets/Buttons/IconButtonResource.tres" id="2_a2mja"]
+[ext_resource type="PackedScene" uid="uid://bo3aog4rpypd0" path="res://Assets/Cases/TestCase/test_case_scene.tscn" id="2_ghq7j"]
 [ext_resource type="Texture2D" uid="uid://cx1geccyi02y6" path="res://Assets/Logo's/oliver64x64.png" id="4_56cdm"]
 [ext_resource type="Texture2D" uid="uid://cgrax4tca24ok" path="res://Assets/Logo's/OliverCoin.png" id="5_3omiw"]
 [ext_resource type="Texture2D" uid="uid://c33hawht0mpw2" path="res://Assets/Logo's/PP.png" id="6_q080a"]
@@ -10,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bkrsmjaevyktx" path="res://Assets/Logo's/global coin.png" id="8_q080a"]
 [ext_resource type="Texture2D" uid="uid://b4136g53b63da" path="res://Assets/Logo's/X.png" id="9_0nebs"]
 
-[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas", "prestigepurchasebutton", "prestigepurchaselabel", "rebirthpurchaselabel")]
+[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas", "casecanvas", "olivercanvas", "prestigepurchasebutton", "prestigepurchaselabel", "rebirthpurchasebutton", "rebirthpurchaselabel")]
 script = ExtResource("1_bjc83")
 cases = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Cases")
 shop = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Shop")
@@ -26,8 +27,11 @@ rp = NodePath("Menu Container/Main Layer/ColorRect/VBoxContainer2/HBoxContainer3
 prestigecanvas = NodePath("Menu Container/Prestige")
 rebirthcanvas = NodePath("Menu Container/Rebirth")
 tutorialcanvas = NodePath("Menu Container/Tutorial")
+casecanvas = NodePath("Menu Container/Cases")
+olivercanvas = NodePath("Menu Container/Olivers")
 prestigepurchasebutton = NodePath("Menu Container/Prestige/ColorRect/PrestigePurchaseButton")
 prestigepurchaselabel = NodePath("Menu Container/Prestige/ColorRect/PrestigePurchaseLabel")
+rebirthpurchasebutton = NodePath("Menu Container/Rebirth/ColorRect/RebirthPurchaseButton")
 rebirthpurchaselabel = NodePath("Menu Container/Rebirth/ColorRect/RebirthPurchaseLabel")
 metadata/_edit_horizontal_guides_ = [-47.0]
 
@@ -344,9 +348,137 @@ offset_bottom = 43.0
 theme = ExtResource("2_a2mja")
 icon = ExtResource("9_0nebs")
 
+[node name="Cases" type="CanvasLayer" parent="Menu Container"]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="Menu Container/Cases"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -299.5
+offset_right = 563.0
+offset_bottom = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419813, 0.419813, 0.419813, 0.65098)
+
+[node name="ColorRect" type="ColorRect" parent="Menu Container/Cases"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -289.0
+offset_right = 550.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.576471, 0.576471, 0.576471, 0.65098)
+
+[node name="CasesExit" type="Button" parent="Menu Container/Cases/ColorRect"]
+layout_mode = 0
+offset_left = 1054.0
+offset_top = -21.0
+offset_right = 1118.0
+offset_bottom = 43.0
+theme = ExtResource("2_a2mja")
+icon = ExtResource("9_0nebs")
+
+[node name="Cases Label" type="Label" parent="Menu Container/Cases/ColorRect"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 3.0
+offset_right = 573.0
+offset_bottom = 52.0
+text = "Your Inventory
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu Container/Cases/ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_right = 1043.0
+offset_bottom = 566.0
+horizontal_scroll_mode = 0
+
+[node name="FlowContainer" type="FlowContainer" parent="Menu Container/Cases/ColorRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" parent="Menu Container/Cases/ColorRect/ScrollContainer/FlowContainer" instance=ExtResource("2_ghq7j")]
+layout_mode = 2
+
+[node name="Olivers" type="CanvasLayer" parent="Menu Container"]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="Menu Container/Olivers"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -299.5
+offset_right = 563.0
+offset_bottom = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419813, 0.419813, 0.419813, 0.65098)
+
+[node name="ColorRect" type="ColorRect" parent="Menu Container/Olivers"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -289.0
+offset_right = 550.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.576471, 0.576471, 0.576471, 0.65098)
+
+[node name="OliverExit" type="Button" parent="Menu Container/Olivers/ColorRect"]
+layout_mode = 0
+offset_left = 1054.0
+offset_top = -21.0
+offset_right = 1118.0
+offset_bottom = 43.0
+theme = ExtResource("2_a2mja")
+icon = ExtResource("9_0nebs")
+
+[node name="Oliver Label" type="Label" parent="Menu Container/Olivers/ColorRect"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 3.0
+offset_right = 573.0
+offset_bottom = 52.0
+text = "Your Olivers:
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu Container/Olivers/ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_right = 1043.0
+offset_bottom = 566.0
+horizontal_scroll_mode = 0
+
+[node name="FlowContainer" type="FlowContainer" parent="Menu Container/Olivers/ColorRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" parent="Menu Container/Olivers/ColorRect/ScrollContainer/FlowContainer" instance=ExtResource("2_ghq7j")]
+layout_mode = 2
+
 [node name="Second" type="Timer" parent="."]
 autostart = true
 
+[connection signal="pressed" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Cases" to="." method="_on_cases_pressed"]
+[connection signal="pressed" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Olivers" to="." method="_on_olivers_pressed"]
 [connection signal="button_down" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Prestige" to="." method="_on_prestige_button_down"]
 [connection signal="button_down" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Rebirth" to="." method="_on_rebirth_button_down"]
 [connection signal="button_down" from="Menu Container/Main Layer/ColorRect/VBoxContainer/?" to="." method="_on__button_down"]
@@ -355,3 +487,5 @@ autostart = true
 [connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthExit" to="." method="_on_rebirth_exit_pressed"]
 [connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthPurchaseButton" to="." method="_on_rebirth_purchase_button_pressed"]
 [connection signal="pressed" from="Menu Container/Tutorial/TutorialExit" to="." method="_on_tutorial_exit_pressed"]
+[connection signal="pressed" from="Menu Container/Cases/ColorRect/CasesExit" to="." method="_on_cases_exit_pressed"]
+[connection signal="pressed" from="Menu Container/Olivers/ColorRect/OliverExit" to="." method="_on_oliver_exit_pressed"]
