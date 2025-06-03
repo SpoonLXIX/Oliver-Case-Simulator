@@ -15,5 +15,6 @@ func init():
 
 
 func sell():
+	Globals.bucksPerSecond = Globals.bucksPerSecond - (value * modifiers)
 	##takes from the money per second
 	queue_free()
