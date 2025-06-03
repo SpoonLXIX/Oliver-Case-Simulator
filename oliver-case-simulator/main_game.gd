@@ -53,6 +53,15 @@ extends Node2D
 @export var rebirthpurchasebutton: Button
 @export var rebirthpurchaselabel: Label
 
+##Oliver's Spawn Here
+@export var oliverspawnpoint: FlowContainer
+
+##List Of Oliver's Preloaded
+@onready var olivertospawn = null
+@export var oliver0 = preload("res://Assets/Olivers/testOliver/test_oliver_scene.tscn")
+@export var oliver1 = preload("res://Assets/Olivers/testOliver2/test_oliver_scene.tscn")
+@export var oliver2 = preload("res://Assets/Olivers/testOliver3/test_oliver_scene.tscn")
+
 ##Blank So Far!
 func _process(_delta):
 	pass
@@ -234,3 +243,15 @@ func _on_rebirth_button_area_pressed() -> void:
 func _on_rebirth_shop_area_pressed() -> void:
 	rebirthbuttonarea.hide()
 	rebirthshoparea.show()
+	
+	
+func spawn(oliver):
+	print(oliver)
+	if oliver == 0:
+		olivertospawn = oliver0.instantiate()
+	elif oliver == 1:
+		olivertospawn = oliver1.instantiate()
+	elif oliver == 2:
+		olivertospawn = oliver2.instantiate()
+	print(olivertospawn)
+	oliverspawnpoint.add_child(olivertospawn)

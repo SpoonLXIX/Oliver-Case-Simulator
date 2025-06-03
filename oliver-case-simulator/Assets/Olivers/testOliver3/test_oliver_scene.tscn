@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg8nv0reumu25"]
+
+[ext_resource type="Script" uid="uid://bkwodimbjg15i" path="res://Assets/Olivers/testOliver/test_oliver_script.gd" id="1_mbgmw"]
+[ext_resource type="Texture2D" uid="uid://cx1geccyi02y6" path="res://Assets/Logo's/oliver64x64.png" id="2_1bdhb"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 89.0
+offset_bottom = 99.0
+script = ExtResource("1_mbgmw")
+index = 2
+value = 10
+modifiers = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.492513, 1.87469e-05, 0.373711, 1)
+layout_mode = 2
+texture = ExtResource("2_1bdhb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Sell" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Sell"
+
+[connection signal="pressed" from="HBoxContainer/Sell" to="." method="_on_sell_pressed"]
