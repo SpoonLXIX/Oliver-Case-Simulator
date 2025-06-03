@@ -1,17 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw3lj3gqo0i6t"]
+[gd_scene load_steps=12 format=3 uid="uid://dw3lj3gqo0i6t"]
 
 [ext_resource type="Script" uid="uid://cin4gplvye4fm" path="res://main_game.gd" id="1_bjc83"]
 [ext_resource type="Texture2D" uid="uid://c8is2f0lp8rys" path="res://Assets/Logo's/crate placeholder.png" id="1_vy74w"]
 [ext_resource type="Theme" uid="uid://4q0dv6gma81c" path="res://Assets/Buttons/IconButtonResource.tres" id="2_a2mja"]
 [ext_resource type="PackedScene" uid="uid://bo3aog4rpypd0" path="res://Assets/Cases/TestCase/test_case_scene.tscn" id="2_ghq7j"]
 [ext_resource type="Texture2D" uid="uid://cx1geccyi02y6" path="res://Assets/Logo's/oliver64x64.png" id="4_56cdm"]
+[ext_resource type="Texture2D" uid="uid://bhhdxkv2ewgro" path="res://icon.svg" id="4_vcw43"]
 [ext_resource type="Texture2D" uid="uid://cgrax4tca24ok" path="res://Assets/Logo's/OliverCoin.png" id="5_3omiw"]
 [ext_resource type="Texture2D" uid="uid://c33hawht0mpw2" path="res://Assets/Logo's/PP.png" id="6_q080a"]
 [ext_resource type="Texture2D" uid="uid://ccoxdiutid7oj" path="res://Assets/Logo's/RP.png" id="7_0nebs"]
 [ext_resource type="Texture2D" uid="uid://bkrsmjaevyktx" path="res://Assets/Logo's/global coin.png" id="8_q080a"]
 [ext_resource type="Texture2D" uid="uid://b4136g53b63da" path="res://Assets/Logo's/X.png" id="9_0nebs"]
 
-[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas", "casecanvas", "olivercanvas", "prestigepurchasebutton", "prestigepurchaselabel", "rebirthpurchasebutton", "rebirthpurchaselabel")]
+[node name="Factory" type="Node2D" node_paths=PackedStringArray("cases", "shop", "olivers", "prestige", "rebirth", "settings", "leaderboard", "bucks", "luck", "pp", "rp", "prestigecanvas", "rebirthcanvas", "tutorialcanvas", "casecanvas", "olivercanvas", "prestigeshoparea", "prestigebuttonarea", "rebirthshoparea", "rebirthbuttonarea", "prestigepurchasebutton", "prestigepurchaselabel", "rebirthpurchasebutton", "rebirthpurchaselabel")]
 script = ExtResource("1_bjc83")
 cases = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Cases")
 shop = NodePath("Menu Container/Main Layer/ColorRect/HBoxContainer/Shop")
@@ -29,10 +30,14 @@ rebirthcanvas = NodePath("Menu Container/Rebirth")
 tutorialcanvas = NodePath("Menu Container/Tutorial")
 casecanvas = NodePath("Menu Container/Cases")
 olivercanvas = NodePath("Menu Container/Olivers")
-prestigepurchasebutton = NodePath("Menu Container/Prestige/ColorRect/PrestigePurchaseButton")
-prestigepurchaselabel = NodePath("Menu Container/Prestige/ColorRect/PrestigePurchaseLabel")
-rebirthpurchasebutton = NodePath("Menu Container/Rebirth/ColorRect/RebirthPurchaseButton")
-rebirthpurchaselabel = NodePath("Menu Container/Rebirth/ColorRect/RebirthPurchaseLabel")
+prestigeshoparea = NodePath("Menu Container/Prestige/PrestigeShop")
+prestigebuttonarea = NodePath("Menu Container/Prestige/PrestigeButton")
+rebirthshoparea = NodePath("Menu Container/Rebirth/RebirthShop")
+rebirthbuttonarea = NodePath("Menu Container/Rebirth/RebirthButton")
+prestigepurchasebutton = NodePath("Menu Container/Prestige/PrestigeButton/PrestigePurchaseButton")
+prestigepurchaselabel = NodePath("Menu Container/Prestige/PrestigeButton/PrestigePurchaseLabel")
+rebirthpurchasebutton = NodePath("Menu Container/Rebirth/RebirthButton/RebirthPurchaseButton")
+rebirthpurchaselabel = NodePath("Menu Container/Rebirth/RebirthButton/RebirthPurchaseLabel")
 metadata/_edit_horizontal_guides_ = [-47.0]
 
 [node name="Menu Container" type="Control" parent="."]
@@ -42,6 +47,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Main Layer" type="CanvasLayer" parent="Menu Container"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Menu Container/Main Layer"]
 offset_right = 1152.0
@@ -64,9 +70,7 @@ icon = ExtResource("1_vy74w")
 [node name="Shop" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_a2mja")
-text = "Shop
-icon = 64x64
-got to add iconbuttonresource on all other buttons."
+icon = ExtResource("4_vcw43")
 
 [node name="Olivers" type="Button" parent="Menu Container/Main Layer/ColorRect/HBoxContainer"]
 layout_mode = 2
@@ -169,7 +173,20 @@ theme_override_colors/font_color = Color(0.325441, 0.325441, 0.325441, 1)
 text = "Version 0.1"
 
 [node name="Prestige" type="CanvasLayer" parent="Menu Container"]
-visible = false
+
+[node name="ColorRect3" type="ColorRect" parent="Menu Container/Prestige"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -328.0
+offset_right = 583.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419608, 0.419608, 0.419608, 0)
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Prestige"]
 anchors_preset = 8
@@ -208,27 +225,69 @@ offset_bottom = 43.0
 theme = ExtResource("2_a2mja")
 icon = ExtResource("9_0nebs")
 
-[node name="PrestigePurchaseLabel" type="Label" parent="Menu Container/Prestige/ColorRect"]
-layout_mode = 2
-offset_left = 312.0
-offset_top = 239.0
-offset_right = 982.0
-offset_bottom = 445.0
+[node name="PrestigeShopArea" type="Button" parent="Menu Container/Prestige"]
+offset_left = 690.0
+offset_top = 55.0
+offset_right = 773.0
+offset_bottom = 86.0
+toggle_mode = true
+text = "Shop"
+
+[node name="PrestigeButtonArea" type="Button" parent="Menu Container/Prestige"]
+offset_left = 409.0
+offset_top = 57.0
+offset_right = 492.0
+offset_bottom = 88.0
+toggle_mode = true
+button_pressed = true
+text = "Prestige"
+
+[node name="PrestigeButton" type="Control" parent="Menu Container/Prestige"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PrestigePurchaseLabel" type="Label" parent="Menu Container/Prestige/PrestigeButton"]
+offset_left = 338.0
+offset_top = 274.0
+offset_right = 1008.0
+offset_bottom = 480.0
 text = "Click the button to prestige the max possible amount that you can!
 This will reset all of your non Perm Oliver's, Boofs And Your Coins!
 Amount Of Prestiges:
 You Will Recieve:"
 
-[node name="PrestigePurchaseButton" type="Button" parent="Menu Container/Prestige/ColorRect"]
-layout_mode = 2
-offset_left = 314.0
-offset_top = 444.0
-offset_right = 692.0
-offset_bottom = 527.0
+[node name="PrestigePurchaseButton" type="Button" parent="Menu Container/Prestige/PrestigeButton"]
+offset_left = 340.0
+offset_top = 479.0
+offset_right = 718.0
+offset_bottom = 562.0
 text = "Prestige"
+
+[node name="PrestigeShop" type="Control" parent="Menu Container/Prestige"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Rebirth" type="CanvasLayer" parent="Menu Container"]
 visible = false
+
+[node name="ColorRect3" type="ColorRect" parent="Menu Container/Rebirth"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -328.0
+offset_right = 583.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419608, 0.419608, 0.419608, 0)
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Rebirth"]
 anchors_preset = 8
@@ -267,27 +326,70 @@ offset_bottom = 43.0
 theme = ExtResource("2_a2mja")
 icon = ExtResource("9_0nebs")
 
-[node name="RebirthPurchaseLabel" type="Label" parent="Menu Container/Rebirth/ColorRect"]
+[node name="RebirthButton" type="Control" parent="Menu Container/Rebirth"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RebirthPurchaseLabel" type="Label" parent="Menu Container/Rebirth/RebirthButton"]
 layout_mode = 0
-offset_left = 312.0
-offset_top = 239.0
-offset_right = 982.0
-offset_bottom = 445.0
+offset_left = 338.0
+offset_top = 274.0
+offset_right = 1008.0
+offset_bottom = 480.0
 text = "Click the button to prestige the max possible amount that you can!
 This will reset all of your non Perm Oliver's, Boofs And Your Coins!
 Amount Of Prestiges:
 You Will Recieve:"
 
-[node name="RebirthPurchaseButton" type="Button" parent="Menu Container/Rebirth/ColorRect"]
+[node name="RebirthPurchaseButton" type="Button" parent="Menu Container/Rebirth/RebirthButton"]
 layout_mode = 0
-offset_left = 314.0
-offset_top = 444.0
-offset_right = 692.0
-offset_bottom = 527.0
+offset_left = 340.0
+offset_top = 479.0
+offset_right = 718.0
+offset_bottom = 562.0
+text = "Rebirth"
+
+[node name="RebirthShop" type="Control" parent="Menu Container/Rebirth"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RebirthShopArea" type="Button" parent="Menu Container/Rebirth"]
+offset_left = 690.0
+offset_top = 55.0
+offset_right = 773.0
+offset_bottom = 86.0
+toggle_mode = true
+text = "Shop"
+
+[node name="RebirthButtonArea" type="Button" parent="Menu Container/Rebirth"]
+offset_left = 409.0
+offset_top = 57.0
+offset_right = 492.0
+offset_bottom = 88.0
+toggle_mode = true
+button_pressed = true
 text = "Rebirth"
 
 [node name="Tutorial" type="CanvasLayer" parent="Menu Container"]
 visible = false
+
+[node name="ColorRect3" type="ColorRect" parent="Menu Container/Tutorial"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -328.0
+offset_right = 583.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419608, 0.419608, 0.419608, 0)
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Tutorial"]
 anchors_preset = 8
@@ -351,6 +453,20 @@ icon = ExtResource("9_0nebs")
 [node name="Cases" type="CanvasLayer" parent="Menu Container"]
 visible = false
 
+[node name="ColorRect3" type="ColorRect" parent="Menu Container/Cases"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -328.0
+offset_right = 583.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419608, 0.419608, 0.419608, 0)
+
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Cases"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -413,6 +529,20 @@ layout_mode = 2
 
 [node name="Olivers" type="CanvasLayer" parent="Menu Container"]
 visible = false
+
+[node name="ColorRect3" type="ColorRect" parent="Menu Container/Olivers"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -328.0
+offset_right = 583.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419608, 0.419608, 0.419608, 0)
 
 [node name="ColorRect2" type="ColorRect" parent="Menu Container/Olivers"]
 anchors_preset = 8
@@ -483,9 +613,13 @@ autostart = true
 [connection signal="button_down" from="Menu Container/Main Layer/ColorRect/HBoxContainer/Rebirth" to="." method="_on_rebirth_button_down"]
 [connection signal="button_down" from="Menu Container/Main Layer/ColorRect/VBoxContainer/?" to="." method="_on__button_down"]
 [connection signal="pressed" from="Menu Container/Prestige/ColorRect/PrestigeExit" to="." method="_on_prestige_exit_pressed"]
-[connection signal="pressed" from="Menu Container/Prestige/ColorRect/PrestigePurchaseButton" to="." method="_on_prestige_purchase_button_pressed"]
+[connection signal="pressed" from="Menu Container/Prestige/PrestigeShopArea" to="." method="_on_prestige_shop_area_pressed"]
+[connection signal="pressed" from="Menu Container/Prestige/PrestigeButtonArea" to="." method="_on_prestige_button_area_pressed"]
+[connection signal="pressed" from="Menu Container/Prestige/PrestigeButton/PrestigePurchaseButton" to="." method="_on_prestige_purchase_button_pressed"]
 [connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthExit" to="." method="_on_rebirth_exit_pressed"]
-[connection signal="pressed" from="Menu Container/Rebirth/ColorRect/RebirthPurchaseButton" to="." method="_on_rebirth_purchase_button_pressed"]
+[connection signal="pressed" from="Menu Container/Rebirth/RebirthButton/RebirthPurchaseButton" to="." method="_on_rebirth_purchase_button_pressed"]
+[connection signal="pressed" from="Menu Container/Rebirth/RebirthShopArea" to="." method="_on_rebirth_shop_area_pressed"]
+[connection signal="pressed" from="Menu Container/Rebirth/RebirthButtonArea" to="." method="_on_rebirth_button_area_pressed"]
 [connection signal="pressed" from="Menu Container/Tutorial/TutorialExit" to="." method="_on_tutorial_exit_pressed"]
 [connection signal="pressed" from="Menu Container/Cases/ColorRect/CasesExit" to="." method="_on_cases_exit_pressed"]
 [connection signal="pressed" from="Menu Container/Olivers/ColorRect/OliverExit" to="." method="_on_oliver_exit_pressed"]

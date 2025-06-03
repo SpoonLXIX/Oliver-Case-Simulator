@@ -37,6 +37,13 @@ extends Node2D
 @export var casecanvas: CanvasLayer
 @export var olivercanvas: CanvasLayer
 
+##Prestige Menus
+@export var prestigeshoparea: Control
+@export var prestigebuttonarea: Control
+
+##Rebirth Menus
+@export var rebirthshoparea: Control
+@export var rebirthbuttonarea: Control
 
 ##Prestige Purchase Button + Label:
 @export var prestigepurchasebutton: Button
@@ -207,3 +214,23 @@ func reset_values(level):
 	update_prestige_price()
 	update_currencies()
 	
+
+
+func _on_prestige_button_area_pressed() -> void:
+	prestigebuttonarea.show()
+	prestigeshoparea.hide()
+
+
+func _on_prestige_shop_area_pressed() -> void:
+	prestigebuttonarea.hide()
+	prestigeshoparea.show()
+
+
+func _on_rebirth_button_area_pressed() -> void:
+	rebirthbuttonarea.show()
+	rebirthshoparea.hide()
+
+
+func _on_rebirth_shop_area_pressed() -> void:
+	rebirthbuttonarea.hide()
+	rebirthshoparea.show()
